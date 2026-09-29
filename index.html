@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NAVICA — One Card. One Path. Complete Support & Emergency Helplines</title>
+  <meta name="description" content="Unified victim support and case navigation portal: live case stage tracking, DLSA compensation status, verifiable digital QR cards, and official emergency helplines."/>
+  
+  <!-- Google Fonts: Sora, Manrope, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%220%22%20%22100%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP DISCLAIMER & EMERGENCY QUICK BAR
+       ========================================================================== -->
+  <div class="top-disclaimer-strip no-print">
+    <div class="container top-disclaimer-content">
+      <div class="top-disclaimer-text">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span>
+          <strong>Academic Prototype Demonstrator.</strong> Fictional case data for concept demonstration. In direct emergency, dial <strong>112</strong> immediately.
+        </span>
+      </div>
+      <div class="top-disclaimer-actions">
+        <button type="button" class="emergency-quick-btn trigger-emergency-modal" title="View Emergency Helplines">
+          <span class="pulse-dot"></span> 🆘 Crisis Helplines (112, 181, 1098)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SITE HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header no-print">
+    <div class="container header-content">
+      <!-- Brand Identity -->
+      <a href="#home" class="brand-logo" onclick="navigateTo('#home')">
+        <div class="brand-shield">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-title">NAVICA</span>
+          <span class="brand-tagline">One Card · One Path · Complete Support</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active" onclick="navigateTo('#home')">Home</a>
+        <a href="#cases" class="nav-link" onclick="navigateTo('#cases')">📁 Cases Directory</a>
+        <a href="#dashboard" class="nav-link" onclick="navigateTo('#dashboard')">My Case</a>
+        <a href="#verify" class="nav-link" onclick="navigateTo('#verify')">Case Access</a>
+        <a href="javascript:void(0)" class="nav-link" onclick="openQRScannerModal()" style="color:var(--accent-blue); font-weight:700;">📷 Scan QR</a>
+        <a href="#rights" class="nav-link" onclick="navigateTo('#rights')">My Rights</a>
+        <a href="#support" class="nav-link" onclick="navigateTo('#support')">Support Services</a>
+        <a href="#support" class="nav-link" onclick="navigateTo('#osc')" style="color:#db2777; font-weight:600;">🌸 OSC Directory</a>
+        <a href="#how-it-works" class="nav-link" onclick="navigateTo('#how-it-works')">How It Works</a>
+        <a href="#helplines" class="nav-link emergency-nav" onclick="navigateTo('#helplines')">
+          🆘 Emergency Numbers
+        </a>
+        <a href="#authority" class="nav-link" onclick="navigateTo('#authority')">Authority Console</a>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="header-actions">
+        <button type="button" class="qr-nav-pill-btn" onclick="openQRScannerModal()" title="Scan Physical or Digital Case QR Card">
+          <span style="font-size:0.95rem;">📷</span> Scan QR
+        </button>
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme" aria-label="Toggle Theme">
+          <span id="themeIcon"></span>
+        </button>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+      <a href="#home" class="nav-link" onclick="navigateTo('#home')">Home</a>
+      <a href="#cases" class="nav-link" onclick="navigateTo('#cases')">📁 Cases Directory</a>
+      <a href="#dashboard" class="nav-link" onclick="navigateTo('#dashboard')">My Case</a>
+      <a href="#verify" class="nav-link" onclick="navigateTo('#verify')">Case Access (Login)</a>
+      <a href="javascript:void(0)" class="nav-link" onclick="openQRScannerModal()" style="color:var(--accent-blue); font-weight:700;">📷 Scan Case QR Card</a>
+      <a href="#rights" class="nav-link" onclick="navigateTo('#rights')">My Rights</a>
+      <a href="#support" class="nav-link" onclick="navigateTo('#support')">Support Services</a>
+      <a href="#support" class="nav-link" onclick="navigateTo('#osc')" style="color:#db2777; font-weight:600;">🌸 One Stop Centres (OSC)</a>
+      <a href="#how-it-works" class="nav-link" onclick="navigateTo('#how-it-works')">How It Works</a>
+      <a href="#helplines" class="nav-link emergency-nav" onclick="navigateTo('#helplines')">🆘 Emergency Numbers</a>
+      <a href="#authority" class="nav-link" onclick="navigateTo('#authority')">Authority Console</a>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main class="flex-1">
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: HOME (#view-home)
+         ------------------------------------------------------------------------ -->
+    <section id="view-home" class="page-view active">
+      <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="hero-grid">
+            <div>
+              <div class="hero-badge-pill">
+                <span>🛡️</span> Victim Support & Case Navigation Prototype
+              </div>
+              <h1 class="hero-title">
+                One card. One path. Complete support for every victim.
+              </h1>
+              <p class="hero-subtitle">
+                NAVICA gives a victim a single, verifiable identity card for their case — so they always know the stage of their case, what happens next, the rights they hold, and where help is available. Authorities update the case once; the victim sees it instantly.
+              </p>
+              <div class="hero-cta-group">
+                <button class="btn btn-primary btn-lg" onclick="navigateTo('#verify')">
+                  Access My Case
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button class="btn btn-emergency btn-lg" onclick="navigateTo('#helplines')">
+                  🆘 Emergency Directory
+                </button>
+                <button class="btn btn-outline btn-lg" style="border-color:#db2777; color:#db2777; background:rgba(219,39,119,0.06); font-weight:600;" onclick="navigateTo('#osc')">
+                  🌸 One Stop Centres (OSC)
+                </button>
+                <button class="btn btn-outline btn-lg" onclick="navigateTo('#authority')">
+                  Authority Desk
+                </button>
+              </div>
+              <div class="hero-trust-bar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <span>Zero-Trust Architecture: No sensitive case or medical notes are stored on the physical QR card. Data is securely requested only upon authenticated case login with your personal password.</span>
+              </div>
+            </div>
+
+            <!-- Hero Emergency Quick-Dialer Banner -->
+            <div>
+              <div class="hero-emergency-banner">
+                <div class="emergency-banner-head">
+                  <div class="emergency-banner-title">
+                    <span>🆘</span> National Crisis Hotlines
+                  </div>
+                  <span class="badge badge-emergency" style="background:#ffffff; color:#be123c;">Toll-Free 24/7</span>
+                </div>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9); margin-bottom: 1.25rem;">
+                  Instant 1-click connection to Indian statutory emergency & trauma response desks:
+                </p>
+                <div class="emergency-dial-grid">
+                  <a href="tel:112" class="emergency-dial-chip" onclick="trackCall('112', 'National Emergency')">
+                    <span class="emergency-dial-num">112</span>
+                    <span class="emergency-dial-label">Emergency</span>
+                  </a>
+                  <a href="tel:102" class="emergency-dial-chip" onclick="trackCall('102', 'Ambulance')">
+                    <span class="emergency-dial-num">102</span>
+                    <span class="emergency-dial-label">Ambulance</span>
+                  </a>
+                  <a href="tel:101" class="emergency-dial-chip" onclick="trackCall('101', 'Fire & Rescue')">
+                    <span class="emergency-dial-num">101</span>
+                    <span class="emergency-dial-label">Fire</span>
+                  </a>
+                  <a href="tel:181" class="emergency-dial-chip" onclick="trackCall('181', 'Women Helpline')">
+                    <span class="emergency-dial-num">181</span>
+                    <span class="emergency-dial-label">Women Helpline</span>
+                  </a>
+                  <a href="tel:1098" class="emergency-dial-chip" onclick="trackCall('1098', 'Childline')">
+                    <span class="emergency-dial-num">1098</span>
+                    <span class="emergency-dial-label">Childline</span>
+                  </a>
+                  <a href="tel:1930" class="emergency-dial-chip" onclick="trackCall('1930', 'Cyber Crime')">
+                    <span class="emergency-dial-num">1930</span>
+                    <span class="emergency-dial-label">Cyber Crime</span>
+                  </a>
+                </div>
+                <div style="margin-top: 1.25rem; text-align: center;">
+                  <button class="btn btn-sm" style="background: rgba(255,255,255,0.2); color:#ffffff; width:100%; border:1px solid rgba(255,255,255,0.3);" onclick="navigateTo('#helplines')">
+                    View Complete Directory (Tele-MANAS, Disability, Elderline, Legal Aid) →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Value Pillars -->
+        <div class="pillars-section">
+          <div class="section-head">
+            <span class="section-badge">Core Pillars</span>
+            <h2 class="section-title">Designed for Survivor Empowerment</h2>
+            <p class="section-sub">Victims of crime often have to move between the police station, the court, and welfare offices to learn what is happening in their own case. NAVICA brings clarity.</p>
+          </div>
+          <div class="pillars-grid">
+            <div class="pillar-card">
+              <div class="pillar-icon-box">⚖️</div>
+              <h3 class="pillar-title">Follow Your Case</h3>
+              <p class="pillar-desc">See the current stage of your case from FIR to judgment, with plain-language explanations at each step.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon-box">🧭</div>
+              <h3 class="pillar-title">Know What Comes Next</h3>
+              <p class="pillar-desc">Guidance that explains what the current stage means and what actions you should take without legal jargon.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon-box">📁</div>
+              <h3 class="pillar-title">Keep Records Together</h3>
+              <p class="pillar-desc">Demo certified copies of FIR records, court documents, and compensation orders behind verified identity.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon-box">🪪</div>
+              <h3 class="pillar-title">Verifiable Case Card</h3>
+              <p class="pillar-desc">A secure QR case card confirming case authenticity safely at shelters, courts, and legal aid desks.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             HOME VIEW: EMERGENCY & CRISIS DIRECTORY [REQUESTED ADDITION]
+             ==================================================================== -->
+        <div class="home-helplines-section" style="margin: 3.5rem 0;">
+          <div class="section-head">
+            <span class="section-badge" style="background:var(--emergency-bg); color:var(--emergency-red); border-color:var(--emergency-border);">🆘 Immediate Crisis Hotlines</span>
+            <h2 class="section-title">Official Emergency & Support Helplines Directory</h2>
+            <p class="section-sub">
+              Direct access to all 7 national crisis directories. Click to call instantly, copy numbers, simulate emergency response, or initiate sign-language video support.
+            </p>
+          </div>
+
+          <!-- Quick category jump pills on Home -->
+          <div class="category-filter-nav" style="justify-content: center; margin-bottom: 2rem;">
+            <a href="#helplines" class="cat-filter-btn active" onclick="navigateTo('#helplines')"><span>📋</span> Full Searchable Directory</a>
+            <a href="#helplines" class="cat-filter-btn" onclick="navigateToCategory('#helplines', 'EMERGENCY')"><span>🆘</span> 112 · 102 · 101</a>
+            <a href="#helplines" class="cat-filter-btn" onclick="navigateToCategory('#helplines', 'LEGAL_RIGHTS')"><span>⚖️</span> 15100 · 14433</a>
+            <a href="#helplines" class="cat-filter-btn" onclick="navigateToCategory('#helplines', 'MENTAL_HEALTH')"><span>🧠</span> 14416 · NIMHANS</a>
+            <a href="#helplines" class="cat-filter-btn" onclick="navigateToCategory('#helplines', 'WOMEN_CHILDREN')"><span>👩</span> 181 · 1098</a>
+            <a href="#helplines" class="cat-filter-btn" onclick="navigateToCategory('#helplines', 'INCLUSIVE_SUPPORT')"><span>♿</span> 14456 · Video Sign</a>
+            <a href="#helplines" class="cat-filter-btn" onclick="navigateToCategory('#helplines', 'SENIOR_CITIZENS')"><span>👴</span> 14567</a>
+            <a href="#helplines" class="cat-filter-btn" onclick="navigateToCategory('#helplines', 'CYBER')"><span>💻</span> 1930</a>
+          </div>
+
+          <!-- All 7 Categorized Cards Container -->
+          <div id="homeCategorizedHelplinesContainer">
+            <!-- Rendered via app.js -->
+          </div>
+        </div>
+
+        <!-- Demonstration NAVICA Victim Cards -->
+        <div class="demo-cards-section">
+          <div class="section-head">
+            <span class="section-badge">Interactive Demonstrator</span>
+            <h2 class="section-title">Demonstration NAVICA Victim Cards</h2>
+            <p class="section-sub">
+              Each card below represents a demo victim card with a scannable standard QR code. Scan the QR code directly with your smartphone camera, click any card to load the verified case, or launch our interactive scanner.
+            </p>
+            <div style="display:flex; justify-content:center; gap:0.75rem; margin-top:1rem; flex-wrap:wrap;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openQRScannerModal()" style="display:inline-flex; align-items:center; gap:0.4rem; font-weight:700;">
+                <span style="font-size:1.1rem;">📷</span> Open Live QR Card Scanner
+              </button>
+            </div>
+          </div>
+          <div class="demo-cards-grid" id="homeDemoCardsContainer">
+            <!-- Dynamic cards injected via app.js -->
+          </div>
+
+          <!-- Registered Demo Numbers List -->
+          <div class="card" style="margin-top: 2.5rem; background: var(--bg-surface);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.25rem;">Registered Demo Directory</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+              For testing in this academic demonstrator, the following fictional records exist:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+              <div style="background: var(--bg-surface-subtle); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+                  <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-blue);">+91 9000000001</span>
+                  <span class="badge badge-info" style="font-size:0.7rem;">Pass: ananya123</span>
+                </div>
+                <div style="font-size: 0.85rem; font-weight: 600;">Ananya Sharma · Case VC-2026-00125 (NAV-001)</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Investigation Stage · Example Police Station</div>
+              </div>
+              <div style="background: var(--bg-surface-subtle); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+                  <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-blue);">+91 9000000002</span>
+                  <span class="badge badge-info" style="font-size:0.7rem;">Pass: rahul123</span>
+                </div>
+                <div style="font-size: 0.85rem; font-weight: 600;">Rahul Verma · Case VC-2026-00126 (NAV-002)</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Court Proceedings Stage · Example Sessions Court</div>
+              </div>
+              <div style="background: var(--bg-surface-subtle); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+                  <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-blue);">+91 9000000003</span>
+                  <span class="badge badge-info" style="font-size:0.7rem;">Pass: priya123</span>
+                </div>
+                <div style="font-size: 0.85rem; font-weight: 600;">Priya Nair · Case VC-2026-00127 (NAV-003)</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Judgment & Compensation Stage · District Court</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: CASE DIRECTORY (#view-cases)
+         ------------------------------------------------------------------------ -->
+    <section id="view-cases" class="page-view">
+      <div class="container">
+        <!-- Section Header -->
+        <div style="text-align:center; margin-bottom:2.25rem;">
+          <span class="section-badge">📁 Integrated Case Tracking</span>
+          <h1 style="font-size:2.25rem; margin-top:0.4rem; margin-bottom:0.5rem;">All Cases Directory & Live Status</h1>
+          <p style="color:var(--text-muted); font-size:0.95rem; max-width:720px; margin:0 auto;">
+            Official centralized registry of registered victim cases. Select any case below to instantly inspect active investigative briefings, judicial trial proceedings, documents, and DLSA victim compensation.
+          </p>
+        </div>
+
+        <!-- Metrics Strip -->
+        <div class="stats-strip" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem;">
+          <div class="card" style="padding:1.15rem; display:flex; align-items:center; gap:1rem;">
+            <div style="font-size:2rem; background:rgba(37,99,235,0.1); width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-lg);">📁</div>
+            <div>
+              <div style="font-size:1.5rem; font-weight:800; color:var(--text-primary);" id="casesStatTotal">3</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Tracked Cases</div>
+            </div>
+          </div>
+          <div class="card" style="padding:1.15rem; display:flex; align-items:center; gap:1rem;">
+            <div style="font-size:2rem; background:rgba(59,130,246,0.1); width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-lg);">🔍</div>
+            <div>
+              <div style="font-size:1.5rem; font-weight:800; color:var(--accent-blue);" id="casesStatInvest">2</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Investigation Stage</div>
+            </div>
+          </div>
+          <div class="card" style="padding:1.15rem; display:flex; align-items:center; gap:1rem;">
+            <div style="font-size:2rem; background:rgba(234,179,8,0.1); width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-lg);">⚖️</div>
+            <div>
+              <div style="font-size:1.5rem; font-weight:800; color:#ca8a04;" id="casesStatCourt">1</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Court Proceedings</div>
+            </div>
+          </div>
+          <div class="card" style="padding:1.15rem; display:flex; align-items:center; gap:1rem;">
+            <div style="font-size:2rem; background:rgba(16,185,129,0.1); width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-lg);">💰</div>
+            <div>
+              <div style="font-size:1.5rem; font-weight:800; color:var(--success-emerald);">₹50,000</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">DLSA Sanctioned</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="card" style="padding:1.25rem 1.5rem; margin-bottom:1.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div style="flex:1; min-width:280px; position:relative;">
+              <input type="text" id="caseSearchInput" class="form-input" placeholder="🔍 Search by Victim Name, Case ID, Police Station, Officer, or Offence..." style="padding-left:1rem; width:100%;"/>
+            </div>
+            <div class="case-filter-tabs" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <button type="button" class="btn btn-sm btn-outline active" id="caseFilterAll" onclick="setCaseDirectoryFilter('ALL')">All Cases (3)</button>
+              <button type="button" class="btn btn-sm btn-outline" id="caseFilterInvest" onclick="setCaseDirectoryFilter('INVESTIGATION')">🔍 Investigation (2)</button>
+              <button type="button" class="btn btn-sm btn-outline" id="caseFilterCourt" onclick="setCaseDirectoryFilter('COURT')">⚖️ Court (1)</button>
+              <button type="button" class="btn btn-sm btn-outline" id="caseFilterComp" onclick="setCaseDirectoryFilter('COMPENSATION')">💰 Compensation</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Cards Grid -->
+        <div id="casesDirectoryList" class="cases-directory-grid">
+          <!-- Injected via app.js -->
+        </div>
+
+        <!-- Zero-Trust Privacy Guarantee Box -->
+        <div class="card" style="margin-top:2.5rem; background:var(--bg-surface-subtle); border-left:4px solid var(--accent-blue);">
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="font-size:1.5rem;">🛡️</span>
+            <div>
+              <h4 style="margin:0 0 0.25rem 0; font-size:1rem; color:var(--text-primary);">Zero-Trust Case Privacy Standard</h4>
+              <p style="margin:0; font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
+                In compliance with judicial guidelines and Cr.P.C. confidentiality, sensitive witness depositions and medical post-mortem notes remain restricted to authorized investigating officers. Victims authenticate using their private password to inspect verified milestones, hearings, and orders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: VERIFICATION & LOGIN (#view-verify)
+         ------------------------------------------------------------------------ -->
+    <section id="view-verify" class="page-view">
+      <div class="container verify-container">
+        <div style="text-align:center; margin-bottom:2rem;">
+          <div class="hero-badge-pill" style="margin-bottom:0.75rem; background:var(--bg-surface-subtle); display:inline-flex;">
+            <span>🔐</span> Confidential Victim Case Authentication
+          </div>
+          <h1 style="font-size: 2.25rem; margin-bottom: 0.5rem;">Access Your Case</h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 620px; margin: 0 auto;">
+            Case details are protected by your personal password. Enter your Case ID or registered mobile number along with the password kept by you to securely access your case.
+          </p>
+        </div>
+
+        <!-- Instant QR Card Scanner Box -->
+        <div style="background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.08)); border: 1.5px dashed var(--accent-blue); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.75rem; text-align: center; box-shadow: var(--shadow-sm);">
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-bottom:0.35rem;">
+            <span style="font-size:1.4rem;">📷</span>
+            <h3 style="font-size:1.15rem; margin:0; color:var(--text-primary);">Have a Physical or Digital Case QR Card?</h3>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem; max-width:540px; margin-left:auto; margin-right:auto;">
+            Scan your NAVICA victim card using your webcam, mobile camera, or upload a photo of the QR code to verify and load your case instantly.
+          </p>
+          <button type="button" class="btn btn-primary" onclick="openQRScannerModal()" style="display:inline-flex; align-items:center; gap:0.5rem; font-weight:700;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Scan Case QR Card
+          </button>
+        </div>
+
+        <!-- Step 1: Select Case ID -->
+        <div class="verify-step-card" id="verifyStep1">
+          <div class="step-indicator-head">
+            <span class="step-num-bubble">1</span>
+            <h2 class="step-title">Select or Enter Your Case Reference</h2>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Click a demo profile below to auto-select, or type your Case ID / Mobile:
+          </p>
+          <div class="demo-selector-chips" id="verifyCaseChips">
+            <!-- Dynamic Chips injected via app.js -->
+          </div>
+          <div class="form-group" style="max-width: 100%;">
+            <label class="form-label" for="verifyCaseInput">Case ID, Case Code, or Registered Mobile</label>
+            <input type="text" id="verifyCaseInput" class="form-input" placeholder="e.g. NAV-001, VC-2026-00125, or 9000000001"/>
+          </div>
+        </div>
+
+        <!-- Step 2: Enter Confidential Password (Set/Kept by Victim) -->
+        <div class="verify-step-card" id="verifyStep2">
+          <div class="step-indicator-head">
+            <span class="step-num-bubble">2</span>
+            <h2 class="step-title">Enter Confidential Case Password</h2>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Enter the password created and kept by you. You can change your password anytime after logging in.
+          </p>
+
+          <form id="victimLoginForm" onsubmit="handlePasswordLogin(event)">
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label" for="verifyPasswordInput">Case Password</label>
+              <div style="position:relative; display:flex; align-items:center;">
+                <input type="password" id="verifyPasswordInput" class="form-input" placeholder="Enter case password" required style="padding-right: 2.75rem; font-family:var(--font-mono);"/>
+                <button type="button" class="btn-password-toggle" id="toggleVerifyPasswordBtn" title="Show/Hide Password" style="position:absolute; right:10px; background:none; border:none; cursor:pointer; font-size:1.1rem; color:var(--text-muted); padding:4px;">
+                  👁️
+                </button>
+              </div>
+            </div>
+
+            <!-- Demo helper shortcut strip -->
+            <div style="background:var(--bg-surface-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.75rem 1rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.8rem;">
+              <span style="color:var(--text-muted);">
+                💡 <strong>Demo Password for selected case:</strong> <code id="activeDemoPasswordHint">ananya123</code> (fallback: <code>victim123</code>)
+              </span>
+              <button type="button" class="btn btn-sm btn-outline" id="autoFillPasswordBtn" style="padding:0.25rem 0.6rem; font-size:0.75rem;">
+                Auto-Fill Password
+              </button>
+            </div>
+
+            <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+              <button type="submit" class="btn btn-primary btn-lg" id="verifyLoginBtn" style="min-width: 220px;">
+                Access My Case
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary" onclick="openResetPasswordModal()" style="font-size:0.8rem;">
+                🔑 First Time / Reset Password?
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: VICTIM DASHBOARD (#view-dashboard)
+         ------------------------------------------------------------------------ -->
+    <section id="view-dashboard" class="page-view">
+      <div class="container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+          <div class="dashboard-top-row">
+            <div>
+              <span class="badge badge-success" style="margin-bottom:0.5rem;">Verified Victim Session</span>
+              <h1 class="dashboard-case-title" id="dashCaseTitle">VC-2026-00125 · Ananya Sharma</h1>
+              <div class="case-meta-list" id="dashCaseMeta">
+                <!-- Injected via app.js -->
+              </div>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
+              <div class="dash-quick-case-switcher" style="display:inline-flex; align-items:center; gap:0.4rem; background:var(--bg-surface-subtle); padding:0.3rem 0.6rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                <label for="dashCaseSelect" style="font-size:0.75rem; font-weight:700; color:var(--text-muted); white-space:nowrap;">Switch Case:</label>
+                <select id="dashCaseSelect" class="form-select" style="padding:0.25rem 0.5rem; font-size:0.8rem; border-radius:var(--radius-sm); font-weight:600; min-width:170px;" onchange="handleDashCaseSwitch(this.value)">
+                  <!-- Injected via app.js -->
+                </select>
+              </div>
+              <button class="btn btn-sm btn-primary" onclick="openAllCasesModal()" title="Browse and switch between all cases">
+                📁 All Cases (3)
+              </button>
+              <button class="btn btn-sm btn-outline" onclick="navigateTo('#verify')">
+                Switch / Login
+              </button>
+              <button class="btn btn-sm btn-emergency" onclick="navigateTo('#helplines')">
+                Emergency Help
+              </button>
+            </div>
+          </div>
+
+          <!-- Dedicated Case Status & Investigation Process Section -->
+          <div class="case-status-card" id="dashCaseStatusSection">
+            <div class="case-status-top-bar">
+              <div class="case-status-badge-group">
+                <span class="case-status-live-pill">
+                  <span class="case-status-pulse-dot"></span> LIVE CASE STATUS
+                </span>
+                <span class="case-status-stage-tag" id="dashCaseStatusTag">Active Investigation Stage</span>
+              </div>
+              <div class="case-status-quick-badge" id="dashCaseStatusStation">
+                <!-- Station & Officer info injected via app.js -->
+              </div>
+            </div>
+            
+            <div class="case-status-main-row">
+              <div class="case-status-icon-box">
+                🔍
+              </div>
+              <div class="case-status-text-content">
+                <div class="case-status-label-sub">Official Current State</div>
+                <h2 class="case-status-title" id="dashCaseStatusTitle">Investigation Process</h2>
+                <p class="case-status-description" id="dashCaseStatusDesc">
+                  <!-- Plain language stage description injected via app.js -->
+                </p>
+              </div>
+            </div>
+
+            <!-- 5-Stage Stepper -->
+            <div class="stepper-container" id="dashStepperContainer">
+              <!-- Injected via app.js -->
+            </div>
+
+            <!-- Official Authority Stage & Investigation Briefing Card (Authority Update Space) -->
+            <div class="authority-stage-brief-card" id="dashAuthorityStageBox">
+              <!-- Injected via app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Main Grid -->
+        <div class="dashboard-grid">
+          <!-- Left Column -->
+          <div>
+            <!-- "What Next?" Card -->
+            <div class="what-next-card">
+              <div class="what-next-header">
+                <span style="font-size:1.5rem;">🧭</span>
+                <h2 class="what-next-title">“What Next?” — Plain Language Guidance</h2>
+              </div>
+              <div class="what-next-blocks">
+                <div class="what-next-item">
+                  <div class="wn-icon-bubble">📖</div>
+                  <div class="wn-content">
+                    <h4>Current Stage Meaning</h4>
+                    <p id="dashWnMeaning"></p>
+                  </div>
+                </div>
+                <div class="what-next-item">
+                  <div class="wn-icon-bubble">⚖️</div>
+                  <div class="wn-content">
+                    <h4>What Happens Next</h4>
+                    <p id="dashWnNext"></p>
+                  </div>
+                </div>
+                <div class="what-next-item">
+                  <div class="wn-icon-bubble">✅</div>
+                  <div class="wn-content">
+                    <h4>Recommended Action for You</h4>
+                    <p id="dashWnAction"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case Timeline -->
+            <div class="card timeline-card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                <h3 style="font-size:1.15rem;">Live Case Milestone Timeline</h3>
+                <span class="badge badge-neutral">Chronological</span>
+              </div>
+              <div class="timeline-list" id="dashTimelineList">
+                <!-- Injected via app.js -->
+              </div>
+            </div>
+
+            <!-- Case Documents Vault -->
+            <div class="card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <div>
+                  <h3 style="font-size:1.15rem;">Case Documents & Orders</h3>
+                  <p style="font-size:0.8rem; color:var(--text-muted);">Verified digital copies issued by authorities</p>
+                </div>
+                <span class="badge badge-info">Vault Access</span>
+              </div>
+              <div class="docs-list" id="dashDocumentsList">
+                <!-- Injected via app.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <!-- Digital Case QR Card Widget -->
+            <div id="dashDigitalCardContainer" style="margin-bottom: 2rem;">
+              <!-- Injected via app.js -->
+            </div>
+
+            <!-- Case Security & Password Management Card -->
+            <div class="card" id="dashSecurityCard" style="margin-bottom: 2rem;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 0.75rem;">
+                <div>
+                  <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                    <span style="font-size:1.2rem;">🔐</span>
+                    <h3 style="font-size:1.05rem;">Case Access Password</h3>
+                  </div>
+                  <p style="font-size:0.775rem; color:var(--text-muted);">Confidential password kept by you</p>
+                </div>
+                <span class="badge badge-success" style="font-size:0.7rem;">Active</span>
+              </div>
+              <div style="background:var(--bg-surface-subtle); padding:0.75rem 1rem; border-radius:var(--radius-md); border:1px solid var(--border-color); margin-bottom:0.85rem; display:flex; justify-content:space-between; align-items:center; font-size:0.85rem;">
+                <span style="color:var(--text-muted); font-size:0.8rem;">Current Password:</span>
+                <span id="dashPasswordDisplay" style="font-family:var(--font-mono); font-weight:700; letter-spacing:0.1em;">••••••••</span>
+              </div>
+              <p style="font-size:0.775rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
+                This password is required whenever you log in or access your NAVICA case. You can change it at any time.
+              </p>
+              <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="openChangePasswordModal()">
+                🔑 Change Case Password
+              </button>
+            </div>
+
+            <!-- Compensation Tracker -->
+            <div id="dashCompensationContainer">
+              <!-- Injected via app.js -->
+            </div>
+
+            <!-- Important Dates -->
+            <div class="card">
+              <h3 style="font-size:1.1rem; margin-bottom:0.75rem;">Important Dates & Reviews</h3>
+              <div id="dashDatesList">
+                <!-- Injected via app.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: EMERGENCY & CRISIS HELPLINES (#view-helplines) [MAIN REQUEST ADDITION]
+         ------------------------------------------------------------------------ -->
+    <section id="view-helplines" class="page-view">
+      <div class="container">
+        <!-- Helplines Header Banner -->
+        <div class="helplines-header-banner">
+          <h1>🆘 Emergency & Statutory Crisis Helplines</h1>
+          <p>
+            Instant direct calling, legal counsel, psychiatric first aid, women & child rescue, disability inclusive video support, and cyber crime freezing hotlines across India.
+          </p>
+          <div class="helplines-search-bar">
+            <input type="text" id="helplineSearchInput" class="helplines-search-input" placeholder="🔍 Search by number (e.g. 112, 181), name, or keyword..."/>
+          </div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="category-filter-nav" id="categoryFilterNav">
+          <!-- Dynamic Category Pills -->
+        </div>
+
+        <!-- Helpline Groups Container -->
+        <div id="helplineGroupsContainer">
+          <!-- Dynamic Categorized Cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: STATUTORY RIGHTS (#view-rights)
+         ------------------------------------------------------------------------ -->
+    <section id="view-rights" class="page-view">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:2.5rem;">
+          <span class="section-badge">Legal Awareness</span>
+          <h1 style="font-size:2.25rem; margin-bottom:0.5rem;">Statutory Rights of Victims</h1>
+          <p style="color:var(--text-muted); max-width:680px; margin:0 auto; font-size:0.95rem;">
+            Under Indian penal jurisprudence, Cr.P.C., BNSS, and the Legal Services Authorities Act, victims of crime are entitled to comprehensive protections, restitution, and dignity.
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:1.5rem;" id="rightsCardsContainer">
+          <!-- Injected via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: SUPPORT SERVICES (#view-support)
+         ------------------------------------------------------------------------ -->
+    <section id="view-support" class="page-view">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:2.5rem;">
+          <span class="section-badge">Holistic Rehabilitation</span>
+          <h1 style="font-size:2.25rem; margin-bottom:0.5rem;">Victim Support Services</h1>
+          <p style="color:var(--text-muted); max-width:680px; margin:0 auto; font-size:0.95rem;">
+            Navigating crisis requires medical, psychological, legal, and shelter intervention. Explore certified institutional networks available through NAVICA.
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;" id="supportServicesContainer">
+          <!-- Injected via app.js -->
+        </div>
+
+        <!-- One Stop Centres (OSC) Contact Directory -->
+        <div class="osc-directory-section" id="oscDirectorySection" style="margin-top: 3.5rem;">
+          <div class="section-head" style="margin-bottom: 2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+              <div>
+                <span class="section-badge" style="background:rgba(219, 39, 119, 0.1); color:#db2777; border-color:rgba(219, 39, 119, 0.25);">
+                  🌸 Ministry of Women & Child Development · Sakhi Scheme
+                </span>
+                <h2 style="font-size: 1.85rem; margin-top: 0.5rem; margin-bottom: 0.35rem;">
+                  One Stop Centres (OSC) Contact Directory
+                </h2>
+                <p style="color: var(--text-muted); font-size: 0.925rem; max-width: 780px;">
+                  Centrally sponsored government crisis centers providing integrated support under one roof: emergency medical care, police desk assistance, legal aid, certified psycho-social counselling, and temporary safe shelter to women affected by violence.
+                </p>
+              </div>
+              <div style="display:flex; gap:0.5rem; align-items:center;">
+                <span class="badge badge-success" style="font-size:0.75rem; padding:0.4rem 0.75rem;">
+                  <span class="pulse-dot"></span> 24/7 Crisis Response Active
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- OSC Search & Filter Bar -->
+          <div class="osc-search-bar" style="margin-bottom: 1.5rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+            <div style="flex:1; min-width:280px; position:relative;">
+              <input type="text" id="oscSearchInput" class="form-input" placeholder="🔍 Search One Stop Centre by District (e.g. Bangalore Urban), Staff Name, or Address..." style="padding-left:1rem;"/>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <button type="button" class="btn btn-sm btn-outline active" id="oscViewCardsBtn" onclick="setOSCViewMode('cards')" title="Card View">
+                📇 Cards View
+              </button>
+              <button type="button" class="btn btn-sm btn-outline" id="oscViewTableBtn" onclick="setOSCViewMode('table')" title="Table View">
+                📊 Official Roster Table
+              </button>
+            </div>
+          </div>
+
+          <!-- OSC Cards Container -->
+          <div id="oscCardsContainer" class="osc-cards-grid">
+            <!-- Dynamic Cards injected via app.js -->
+          </div>
+
+          <!-- OSC Official Tabular View -->
+          <div class="card osc-table-card" id="oscTableCard" style="margin-top: 1.5rem; overflow-x: auto; padding: 0;">
+            <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <h3 style="font-size: 1.1rem; margin:0;">Official District Contact Roster Table</h3>
+                <span style="font-size:0.75rem; color:var(--text-muted);">State of Karnataka · Department of Women & Child Development</span>
+              </div>
+              <span class="badge badge-info" style="font-size:0.75rem;">Verified Government Roster</span>
+            </div>
+            <table class="osc-table" id="oscTable">
+              <thead>
+                <tr>
+                  <th style="width: 55px; text-align:center;">Sl. No.</th>
+                  <th>Name of the Districts</th>
+                  <th>Address</th>
+                  <th>Centre Administrator</th>
+                  <th>Counsellor</th>
+                  <th>Landline Number</th>
+                  <th>E-mail IDs</th>
+                  <th style="text-align:right;">Quick Actions</th>
+                </tr>
+              </thead>
+              <tbody id="oscTableTbody">
+                <!-- Injected via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: HOW IT WORKS (#view-how-it-works)
+         ------------------------------------------------------------------------ -->
+    <section id="view-how-it-works" class="page-view">
+      <div class="container" style="max-width: 860px;">
+        <div style="text-align:center; margin-bottom:2.5rem;">
+          <span class="section-badge">Architecture & Governance</span>
+          <h1 style="font-size:2.25rem; margin-bottom:0.5rem;">How NAVICA Works</h1>
+          <p style="color:var(--text-muted); font-size:0.95rem;">
+            A conceptual integration layer bridging CCTNS, ICJS, e-Courts, and DLSA to provide real-time victim visibility while enforcing strict zero-trust privacy.
+          </p>
+        </div>
+
+        <!-- 5-Step Architectural Flow -->
+        <div id="howItWorksFlowContainer">
+          <!-- Injected via app.js -->
+        </div>
+
+        <!-- Security & Privacy Safeguards Box -->
+        <div class="card" style="margin-top:2.5rem; background:linear-gradient(135deg, var(--bg-surface), var(--bg-accent-subtle));">
+          <h3 style="font-size:1.2rem; margin-bottom:1rem;">🔐 Core Architectural Safeguards</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; font-size:0.85rem;">
+            <div>
+              <strong>Data Minimization</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">Only progress milestones and document notices are retrieved; third-party investigation notes are never exposed.</p>
+            </div>
+            <div>
+              <strong>No Plaintext in QR</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">Physical cards contain cryptographic tokens only. A lost card cannot leak victim identity or testimony.</p>
+            </div>
+            <div>
+              <strong>Role-Based Access Control</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">Enforced at server layer: Victims access only their own case; officers see only authorized jurisdictional matters.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         VIEW: AUTHORITY CONSOLE (#view-authority)
+         ------------------------------------------------------------------------ -->
+    <section id="view-authority" class="page-view">
+      <div class="container authority-container">
+        <!-- Sign In Card (When not authenticated) -->
+        <div class="card" id="authorityLoginCard" style="max-width: 520px; margin: 0 auto;">
+          <div style="text-align:center; margin-bottom:1.5rem;">
+            <div style="width:50px; height:50px; background:var(--primary); color:#ffffff; border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 0.75rem; font-size:1.5rem;">
+              ⚖️
+            </div>
+            <h1 style="font-size:1.6rem;">Authority Console Sign-In</h1>
+            <p style="font-size:0.85rem; color:var(--text-muted);">For Police, Prosecution & DLSA Caseworkers</p>
+          </div>
+
+          <form id="authorityLoginForm">
+            <div class="form-group">
+              <label class="form-label" for="authorityEmail">Official Email ID</label>
+              <input type="email" id="authorityEmail" class="form-input" placeholder="authority@navica.demo" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="authorityPin">Official Security Passcode</label>
+              <input type="password" id="authorityPin" class="form-input" placeholder="••••••••" required/>
+            </div>
+            <div style="margin-bottom:1.25rem;">
+              <button type="submit" class="btn btn-primary" style="width:100%;">
+                Sign In to Authority Console
+              </button>
+            </div>
+            <div class="authority-shortcut-card">
+              <div class="authority-shortcut-header">
+                <span class="authority-shortcut-icon">🔑</span>
+                <strong>Demo Evaluator Credentials</strong>
+              </div>
+              <div class="authority-shortcut-credentials">
+                <span>Email: <code class="credential-code">authority@navica.demo</code></span>
+                <span>Passcode: <code class="credential-code">NAVICA2026</code></span>
+              </div>
+              <button type="button" class="btn btn-sm btn-shortcut-fill" id="fillDemoAuthorityBtn">
+                ⚡ Auto-Fill Demo Credentials
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Authority Console Main (When authenticated) -->
+        <div id="authorityPortalContent" style="display:none;">
+          <div class="authority-header-box">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+              <div>
+                <span class="badge badge-success" style="background:rgba(5,150,105,0.3); color:#6ee7b7; border-color:#059669; margin-bottom:0.5rem;">
+                  Authority Session Active
+                </span>
+                <h1>Criminal Justice Authority Desk</h1>
+                <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">
+                  Update live case milestones, modify "what next" guidance, and revise DLSA compensation payouts.
+                </p>
+              </div>
+              <button class="btn btn-sm btn-outline" id="authoritySignOutBtn" style="color:#ffffff; border-color:rgba(255,255,255,0.3);">
+                Sign Out
+              </button>
+            </div>
+          </div>
+
+          <!-- Search & Filter Card -->
+          <div class="authority-search-card">
+            <div style="display:grid; grid-template-columns:2fr 1fr; gap:1rem; align-items:flex-end;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="authoritySearchInput">Search Cases</label>
+                <input type="text" id="authoritySearchInput" class="form-input" placeholder="Search by Case ID (NAV-001), Victim Name, Officer, or Crime Type..."/>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="authorityStatusSelect">Filter by Stage</label>
+                <select id="authorityStatusSelect" class="form-select">
+                  <option value="ALL">All Stages</option>
+                  <option value="FIR">FIR</option>
+                  <option value="Investigation">Investigation</option>
+                  <option value="Charge Sheet">Charge Sheet</option>
+                  <option value="Court Proceedings">Court Proceedings</option>
+                  <option value="Judgment">Judgment</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Cases Table -->
+            <div style="overflow-x:auto; margin-top:1.5rem;">
+              <table class="authority-cases-table">
+                <thead>
+                  <tr>
+                    <th>Case ID</th>
+                    <th>Victim Name & Category</th>
+                    <th>Station & Officer</th>
+                    <th>Current Stage</th>
+                    <th>Compensation</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="authorityCasesTbody">
+                  <!-- Injected via app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       GLOBAL SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer no-print">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:1rem;" onclick="navigateTo('#home')">
+            <div class="brand-shield" style="width:36px; height:36px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div>
+              <span class="brand-title">NAVICA</span>
+              <span class="brand-tagline">Victim Support Prototype</span>
+            </div>
+          </div>
+          <p style="color:rgba(255,255,255,0.7); font-size:0.8rem; line-height:1.6;">
+            A unified digital bridge between victims, police stations, courts, and welfare services. Bringing transparency, dignity, and trauma-informed support to every case.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform Portals</h4>
+          <ul class="footer-links-list">
+            <li><a href="#home" onclick="navigateTo('#home')">Home Overview</a></li>
+            <li><a href="#verify" onclick="navigateTo('#verify')">Victim Case Access</a></li>
+            <li><a href="#dashboard" onclick="navigateTo('#dashboard')">My Case Dashboard</a></li>
+            <li><a href="#authority" onclick="navigateTo('#authority')">Authority Console</a></li>
+            <li><a href="#how-it-works" onclick="navigateTo('#how-it-works')">CCTNS Integration</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Victim Rights & Support</h4>
+          <ul class="footer-links-list">
+            <li><a href="#rights" onclick="navigateTo('#rights')">Statutory Rights Guide</a></li>
+            <li><a href="#support" onclick="navigateTo('#osc')" style="color:#db2777; font-weight:600;">🌸 One Stop Centres (OSC Sakhi)</a></li>
+            <li><a href="#support" onclick="navigateTo('#support')">Legal Services (NALSA)</a></li>
+            <li><a href="#support" onclick="navigateTo('#support')">Psychological Counselling</a></li>
+            <li><a href="#support" onclick="navigateTo('#support')">Safe Shelter Networks</a></li>
+            <li><a href="#dashboard" onclick="navigateTo('#dashboard')">DLSA Compensation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style="color:#fda4af;">🆘 24/7 Crisis Directory</h4>
+          <ul class="footer-links-list" style="font-family:var(--font-mono); font-size:0.85rem;">
+            <li><a href="tel:112" onclick="trackCall('112', 'Emergency')"><strong>112</strong> — National Emergency</a></li>
+            <li><a href="tel:181" onclick="trackCall('181', 'Women')"><strong>181</strong> — Women Helpline</a></li>
+            <li><a href="tel:1098" onclick="trackCall('1098', 'Child')"><strong>1098</strong> — Child Helpline</a></li>
+            <li><a href="tel:14416" onclick="trackCall('14416', 'Tele-MANAS')"><strong>14416</strong> — Tele-MANAS Mental Health</a></li>
+            <li><a href="tel:15100" onclick="trackCall('15100', 'Legal Aid')"><strong>15100</strong> — Free Legal Aid (NALSA)</a></li>
+            <li><a href="tel:1930" onclick="trackCall('1930', 'Cyber')"><strong>1930</strong> — Cyber Crime Helpline</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>© 2026 NAVICA Academic Prototype. Created for research and demonstration purposes only.</span>
+        <span>Not connected to live CCTNS, ICJS, or police production databases.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS
+       ========================================================================== -->
+
+  <!-- Document Viewer Modal -->
+  <div class="modal-backdrop" id="documentModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="documentModalTitle">Certified Document Extract</h3>
+        <button class="modal-close-btn" onclick="closeModal('documentModal')">✕</button>
+      </div>
+      <div class="modal-body" id="documentModalBody">
+        <!-- Injected via app.js -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ Print Extract</button>
+        <button class="btn btn-primary" onclick="closeModal('documentModal')">Close Viewer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Verification Modal -->
+  <div class="modal-backdrop" id="qrCardModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">NAVICA Digital Case Token</h3>
+        <button class="modal-close-btn" onclick="closeModal('qrCardModal')">✕</button>
+      </div>
+      <div class="modal-body" id="qrCardModalBody">
+        <!-- Injected via app.js -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="closeModal('qrCardModal')">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVICA QR Scanner Modal -->
+  <div class="modal-backdrop" id="qrScannerModal">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <span style="font-size:1.35rem;">📷</span>
+          <h3 class="modal-title">Scan Case QR Card</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closeQRScannerModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem;">
+        <div class="qr-scanner-tabs">
+          <button type="button" class="qr-scanner-tab-btn active" id="qrTabCameraBtn" onclick="switchQRScannerTab('camera')">
+            📹 Camera
+          </button>
+          <button type="button" class="qr-scanner-tab-btn" id="qrTabUploadBtn" onclick="switchQRScannerTab('upload')">
+            📁 Upload Image
+          </button>
+          <button type="button" class="qr-scanner-tab-btn" id="qrTabDemoBtn" onclick="switchQRScannerTab('demo')">
+            ⚡ Demo Cases
+          </button>
+        </div>
+
+        <!-- Tab 1: Live Camera -->
+        <div id="qrScannerTabCamera" class="qr-tab-content">
+          <div class="qr-scanner-viewport" id="qrScannerViewport">
+            <video id="qrScannerVideo" playsinline muted></video>
+            <div class="qr-scanner-overlay">
+              <div class="qr-scanner-box">
+                <div class="qr-scanner-corners"></div>
+                <div class="qr-scanner-laser"></div>
+              </div>
+            </div>
+            <div id="qrCameraStatusMsg" style="position:absolute; bottom:12px; background:rgba(0,0,0,0.75); color:#fff; font-size:0.75rem; padding:4px 10px; border-radius:12px; pointer-events:none;">
+              Point camera at physical or digital QR card
+            </div>
+          </div>
+          <canvas id="qrScannerCanvas" style="display:none;"></canvas>
+          <div style="margin-top:0.85rem; text-align:center;">
+            <button type="button" class="btn btn-outline btn-sm" id="qrCameraToggleBtn" onclick="toggleCameraStream()">
+              🔄 Switch / Restart Camera
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 2: Upload Image -->
+        <div id="qrScannerTabUpload" class="qr-tab-content" style="display:none;">
+          <div class="qr-dropzone" id="qrDropZone" onclick="document.getElementById('qrFileInput').click()">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.8" style="margin-bottom:0.5rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <h4 style="margin:0 0 0.25rem 0; font-size:1rem; color:var(--text-primary);">Click or Drag & Drop QR Image</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
+              Supports PNG, JPG, WEBP, SVG screenshots or card photos
+            </p>
+            <input type="file" id="qrFileInput" accept="image/*" style="display:none;" onchange="handleQRFileSelected(event)">
+          </div>
+          <div id="qrUploadPreview" style="margin-top:1rem; text-align:center; display:none;">
+            <img id="qrUploadImg" style="max-height:160px; max-width:100%; border-radius:var(--radius-md); border:1px solid var(--border-color);"/>
+            <p id="qrUploadStatus" style="font-size:0.85rem; font-weight:600; margin-top:0.5rem;"></p>
+          </div>
+        </div>
+
+        <!-- Tab 3: Demo Cases Instant Scan -->
+        <div id="qrScannerTabDemo" class="qr-tab-content" style="display:none;">
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+            Test the instant scan decoder with any of our 3 official academic demo records:
+          </p>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <button type="button" class="btn btn-outline" style="justify-content:flex-start; text-align:left; padding:0.75rem 1rem;" onclick="simulateQRScan('VC-2026-00125')">
+              <span style="font-size:1.2rem; margin-right:0.5rem;">👩</span>
+              <div style="flex:1;">
+                <strong>Ananya Sharma</strong> (<code>VC-2026-00125</code>)
+                <div style="font-size:0.75rem; color:var(--text-muted);">Investigation Process · Examined by Sub-Inspector Raman</div>
+              </div>
+              <span class="badge badge-info">Scan ⚡</span>
+            </button>
+            <button type="button" class="btn btn-outline" style="justify-content:flex-start; text-align:left; padding:0.75rem 1rem;" onclick="simulateQRScan('VC-2026-00126')">
+              <span style="font-size:1.2rem; margin-right:0.5rem;">👨</span>
+              <div style="flex:1;">
+                <strong>Rahul Verma</strong> (<code>VC-2026-00126</code>)
+                <div style="font-size:0.75rem; color:var(--text-muted);">Court Proceedings · Principal District & Sessions Court</div>
+              </div>
+              <span class="badge badge-warning">Scan ⚡</span>
+            </button>
+            <button type="button" class="btn btn-outline" style="justify-content:flex-start; text-align:left; padding:0.75rem 1rem;" onclick="simulateQRScan('VC-2026-00127')">
+              <span style="font-size:1.2rem; margin-right:0.5rem;">👩</span>
+              <div style="flex:1;">
+                <strong>Priya Nair</strong> (<code>VC-2026-00127</code>)
+                <div style="font-size:0.75rem; color:var(--text-muted);">Compensation Sanction · DLSA Sanction ₹3,50,000</div>
+              </div>
+              <span class="badge badge-success">Scan ⚡</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.75rem 1.25rem;">
+        <span style="font-size:0.75rem; color:var(--text-muted); flex:1;">
+          🔐 Zero-Trust token scan with client-side verification
+        </span>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeQRScannerModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authority Case Editor Modal -->
+  <div class="modal-backdrop" id="caseEditorModal">
+    <div class="modal-dialog" style="max-width: 720px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="caseEditorModalTitle">Authority Case Editor</h3>
+        <button class="modal-close-btn" onclick="closeModal('caseEditorModal')">✕</button>
+      </div>
+      <div class="modal-body" id="caseEditorModalBody">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Test Call Simulator Modal -->
+  <div class="modal-backdrop" id="testCallModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Simulated Dispatch Network</h3>
+        <button class="modal-close-btn" onclick="closeModal('testCallModal')">✕</button>
+      </div>
+      <div class="modal-body" id="testCallModalBody">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Detail Modal -->
+  <div class="modal-backdrop" id="supportDetailModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="supportDetailTitle">Support Service Details</h3>
+        <button class="modal-close-btn" onclick="closeModal('supportDetailModal')">✕</button>
+      </div>
+      <div class="modal-body" id="supportDetailBody">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Victim Change Password Modal -->
+  <div class="modal-backdrop" id="victimPasswordModal">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Change Case Access Password</h3>
+        <button class="modal-close-btn" onclick="closeModal('victimPasswordModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          Set a new confidential password for your case. This password will be kept for all future logins.
+        </p>
+        <form id="changePasswordForm" onsubmit="handleSaveNewPassword(event)">
+          <div class="form-group">
+            <label class="form-label" for="newPasswordInput">New Case Password</label>
+            <div style="position:relative; display:flex; align-items:center;">
+              <input type="password" id="newPasswordInput" class="form-input" required minlength="3" placeholder="Enter new password" style="padding-right: 2.75rem;"/>
+              <button type="button" class="btn-password-toggle" onclick="togglePasswordVisibility('newPasswordInput', this)" title="Show/Hide Password" style="position:absolute; right:10px; background:none; border:none; cursor:pointer; font-size:1.1rem; color:var(--text-muted); padding:4px;">
+                👁️
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="confirmPasswordInput">Confirm New Password</label>
+            <input type="password" id="confirmPasswordInput" class="form-input" required minlength="3" placeholder="Re-type new password"/>
+          </div>
+          <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+            <button type="button" class="btn btn-outline" onclick="closeModal('victimPasswordModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save New Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- First Time / Reset Password Modal with OTP Verification -->
+  <div class="modal-backdrop" id="resetPasswordModal">
+    <div class="modal-dialog" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="resetModalTitle">Reset Case Password</h3>
+        <button class="modal-close-btn" onclick="closeModal('resetPasswordModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- Stage Progress Indicator Pills -->
+        <div class="reset-stages-indicator" style="display:flex; justify-content:space-between; margin-bottom:1.5rem; background:var(--bg-surface-subtle); padding:0.6rem 0.85rem; border-radius:var(--radius-md); border:1px solid var(--border-color); font-size:0.775rem;">
+          <div id="resetStagePill1" class="reset-pill active" style="font-weight:700; color:var(--accent-blue);">1. Enter Mobile / Case</div>
+          <div style="color:var(--text-muted);">→</div>
+          <div id="resetStagePill2" class="reset-pill" style="color:var(--text-muted);">2. Verify OTP</div>
+          <div style="color:var(--text-muted);">→</div>
+          <div id="resetStagePill3" class="reset-pill" style="color:var(--text-muted);">3. New Password</div>
+        </div>
+
+        <!-- Sub-step 1: Identify Case / Mobile -->
+        <div id="resetStep1View">
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.25rem;">
+            Enter your Case ID (e.g. NAV-001) or registered mobile number to receive a one-time verification code.
+          </p>
+          <form id="resetRequestOtpForm" onsubmit="handleResetRequestOtp(event)">
+            <div class="form-group">
+              <label class="form-label" for="resetCaseOrMobileInput">Case ID or Registered Mobile</label>
+              <input type="text" id="resetCaseOrMobileInput" class="form-input" required placeholder="e.g. NAV-001, VC-2026-00125, or 9000000001"/>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+              <button type="button" class="btn btn-outline" onclick="closeModal('resetPasswordModal')">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="btnRequestResetOtp">
+                Send OTP Code
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sub-step 2: Enter & Verify OTP -->
+        <div id="resetStep2View" style="display:none;">
+          <!-- Simulated SMS Notification Box -->
+          <div id="resetSmsSimulatorBox" class="sms-simulator-box" style="margin-bottom:1.25rem;"></div>
+
+          <form id="resetVerifyOtpForm" onsubmit="handleResetVerifyOtp(event)">
+            <div class="form-group">
+              <label class="form-label" for="resetOtpInput">Enter 6-Digit OTP Code</label>
+              <div style="display:flex; gap:0.75rem; align-items:center;">
+                <input type="text" id="resetOtpInput" class="form-input" maxlength="6" placeholder="______" required style="letter-spacing:0.35em; font-family:var(--font-mono); font-size:1.25rem; text-align:center; font-weight:700;"/>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="autoFillResetOtp()" style="white-space:nowrap;">
+                  Auto-Fill
+                </button>
+              </div>
+              <div class="otp-countdown-timer" style="margin-top:0.5rem;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span id="resetOtpTimerText">Expires in 03:00</span>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="backToResetStep1()">← Back</button>
+              <button type="submit" class="btn btn-accent">
+                Verify OTP & Continue
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sub-step 3: Create New Password (Unlocks ONLY after OTP verified) -->
+        <div id="resetStep3View" style="display:none;">
+          <div style="background:var(--bg-surface-subtle); border-left:3px solid var(--accent-blue); padding:0.75rem 1rem; border-radius:var(--radius-sm); margin-bottom:1.25rem; font-size:0.85rem;">
+            <span>✅ OTP Verified for <strong id="resetTargetVictimName"></strong>. You may now create and keep your new password.</span>
+          </div>
+
+          <form id="resetSaveNewPasswordForm" onsubmit="handleResetSaveNewPassword(event)">
+            <div class="form-group">
+              <label class="form-label" for="resetNewPasswordInput">New Case Password</label>
+              <div style="position:relative; display:flex; align-items:center;">
+                <input type="password" id="resetNewPasswordInput" class="form-input" required minlength="3" placeholder="Enter new confidential password" style="padding-right: 2.75rem;"/>
+                <button type="button" class="btn-password-toggle" onclick="togglePasswordVisibility('resetNewPasswordInput', this)" title="Show/Hide Password" style="position:absolute; right:10px; background:none; border:none; cursor:pointer; font-size:1.1rem; color:var(--text-muted); padding:4px;">
+                  👁️
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="resetConfirmPasswordInput">Confirm New Password</label>
+              <input type="password" id="resetConfirmPasswordInput" class="form-input" required minlength="3" placeholder="Re-enter new password"/>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+              <button type="button" class="btn btn-outline" onclick="closeModal('resetPasswordModal')">Cancel</button>
+              <button type="submit" class="btn btn-primary">
+                Save Password & Open Case
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <!-- All Cases Directory & Quick Switch Modal -->
+  <div class="modal-backdrop" id="allCasesModal" onclick="if(event.target===this)closeModal('allCasesModal')">
+    <div class="modal-dialog" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3 class="modal-title">📁 Quick Case Switcher</h3>
+        <button class="modal-close-btn" onclick="closeModal('allCasesModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          Click any case below to immediately switch the active victim session and view its live investigation status, stage dispatches, documents, compensation tracker, and judicial timeline.
+        </p>
+        <div id="allCasesModalList">
+          <!-- Injected via app.js -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:1rem 1.5rem; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+        <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('allCasesModal'); navigateTo('#cases');">
+          Open Full Page Directory →
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('allCasesModal')">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="qrcode.min.js"></script>
+  <script src="jsqr.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
